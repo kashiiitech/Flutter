@@ -1,8 +1,8 @@
-# provider
+# provider_ex
 
 A new Flutter project.
 
-## Getting Started with Provider why we actually need them
+## Getting Started
 
 This project is a starting point for a Flutter application.
 

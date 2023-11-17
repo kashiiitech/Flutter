@@ -1,5 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/why_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:provider_ex/provider/count_provider.dart';
+import 'package:provider_ex/provider/example_one_provider.dart';
+import 'package:provider_ex/provider/favourite_provider.dart';
+import 'package:provider_ex/provider/theme_changer_provider.dart';
+import 'package:provider_ex/screens/dark_theme.dart';
+// import 'package:provider_ex/screens/count_example.dart';
+// import 'package:provider_ex/screens/example_one.dart';
+import 'package:provider_ex/screens/favourite/favourite_screen.dart';
+import 'package:provider_ex/screens/value_notify_listener.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,8 +20,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    // final themeChanger = Provider.of<ThemeChangerProvider>(context);
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CountProvider()),
+        ChangeNotifierProvider(create: (_) => ExampleOneProvider()),
+        ChangeNotifierProvider(create: (_) => FavouriteItemProvider(),),
+        ChangeNotifierProvider(create: (_) => ThemeChangerProvider(),)
+      ],
+      // create: (_) => CountProvider(),
+      child: Builder(builder: (BuildContext context) {
+        final themeChanger = Provider.of<ThemeChangerProvider>(context);
+        return MaterialApp(
       title: 'Flutter Demo',
+      themeMode: themeChanger.themeMode,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -32,7 +53,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const WhyProviderScreen(),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark
+      ),
+      home: NotifyListenerScreen(),
+    );
+      })
     );
   }
 }

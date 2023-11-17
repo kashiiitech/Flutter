@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 
@@ -21,7 +20,7 @@ class _WhyProviderScreenState extends State<WhyProviderScreen> {
   void initState() {
     super.initState();
 
-    Timer.periodic(Duration(seconds: 1), (timer) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       count++;
       print(count);
       setState(() {
