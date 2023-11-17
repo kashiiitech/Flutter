@@ -1,2 +1,3 @@
-# Flutter
-Flutter and Dart resources, complemented by practical, foundational projects. 
+# Flutter State management
+
+### Contains the Provider State Management also included how to use stateless widget as stateful
